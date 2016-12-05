@@ -30,13 +30,13 @@ include_directories(
   ${Boost_INCLUDE_DIRS}
 )
 
-
-
 # make the executables
-add_executable( terarangerduo_node src/terarangerduo.cpp src/serial_port.cpp  )
-add_dependencies( terarangerduo_node  ${catkin_EXPORTED_TARGETS} )
-add_dependencies(terarangerduo_node ${PROJECT_NAME}_gencfg)
-target_link_libraries( terarangerduo_node ${catkin_LIBRARIES} ${Boost_LIBRARIES} )
+add_executable(${PROJECT_NAME} src/terarangerduo.cpp src/serial_port.cpp  )
+add_dependencies(${PROJECT_NAME}  ${catkin_EXPORTED_TARGETS} )
+add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_gencfg)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES} )
 
-
-
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
